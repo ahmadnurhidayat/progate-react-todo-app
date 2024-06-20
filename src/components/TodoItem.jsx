@@ -3,51 +3,25 @@ import React from "react";
 function TodoItem(todo) {
   const getTodoTitleStyle = () => {
     if (todo.completed === true) {
-      return { textDecoration: "line-through" };
+      return "line-through";
     } else {
-      return { textDecoration: "none" };
+      return "none";
     }
   };
 
   return (
-    <div style={style.todoItem}>
+    <div className="flex items-center p-4 border border-gray-300 rounded-md">
       <input
         type="checkbox"
-        style={style.checkbox}
+        className="form-checkbox h-5 w-5 text-indigo-600 mr-4"
         onChange={() => todo.toggleCompleted(todo.id)}
       />
-      <p style={getTodoTitleStyle()}>{todo.title}</p>
-      <button style={style.button} onClick={() => todo.deleteTodo(todo.id)}>
+      <p className={`text-xl ${getTodoTitleStyle()}`}>{todo.title}</p>
+      <button className="bg-red-500 text-white py-2 px-4 rounded-full ml-4" onClick={() => todo.deleteTodo(todo.id)}>
         x
       </button>
     </div>
   );
 }
-
-const style = {
-  todoItem: {
-    border: "2px solid #f4f4f4",
-    fontSize: "24px",
-    display: "flex",
-    justifyContent: "space-between",
-    alignItems: "center",
-    padding: "0 14px",
-  },
-  checkbox: {
-    marginRight: "10px",
-    height: "18px",
-    width: "18px",
-  },
-  button: {
-    backgroundColor: "#BB0000",
-    color: "#fff",
-    height: "30px",
-    width: "30px",
-    borderRadius: "100%",
-    border: "none",
-    cursor: "pointer",
-    fontSize: "16px",
-  },
-};
 
 export default TodoItem;

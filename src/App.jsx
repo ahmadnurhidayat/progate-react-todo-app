@@ -25,7 +25,7 @@ function App() {
   const toggleCompleted = (id) => {
     const updateTodos = todos.map((todo) => {
       if (todo.id === id) {
-        todo.completed = !todo.completed;
+        todo.completed =!todo.completed;
       }
       return todo;
     });
@@ -35,15 +35,16 @@ function App() {
 
   const deleteTodo = (id) => {
     const filterDeleted = todos.filter((todo) => {
-      return todo.id !== id;
+      return todo.id!== id;
     });
 
     setTodos(filterDeleted);
   };
 
   return (
-    <div style={styles.container}>
-      <h1>My Todo List</h1>
+    <div className="justify-center p-12">
+      <h1 className="flex justify-center text-4xl mb-6">My Todo List</h1>
+
       <Todos
         todos={todos}
         toggleCompleted={toggleCompleted}
@@ -52,12 +53,5 @@ function App() {
     </div>
   );
 }
-
-const styles = {
-  container: {
-    textAlign: "center",
-    padding: "12px",
-  },
-};
 
 export default App;

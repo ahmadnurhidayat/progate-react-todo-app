@@ -1,27 +1,33 @@
-import TodoItem from "./TodoItem";
+import React from "react";
 
-function Todos({ todos, toggleCompleted, deleteTodo }) {
+const Todos = ({ todos, toggleCompleted, deleteTodo }) => {
   return (
-    <div style={styles.container}>
+    <ul className="flex flex-col justify-center list-none mb-4">
       {todos.map((todo) => (
-        <TodoItem
-          completed={todo.completed}
-          title={todo.title}
-          key={todo.id}
-          id={todo.id}
-          toggleCompleted={toggleCompleted}
-          deleteTodo={deleteTodo}
-        />
+        <li key={todo.id} className="flex justify-center items-center mb-2">
+          <span
+            className={`text-lg ${
+              todo.completed? "line-through" : ""
+            }`}
+          >
+            {todo.title}
+          </span>
+          <button
+            className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded ml-4"
+            onClick={() => deleteTodo(todo.id)}
+          >
+            Delete
+          </button>
+          <button
+            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded ml-4"
+            onClick={() => toggleCompleted(todo.id)}
+          >
+            {todo.completed? "Uncomplete" : "Complete"}
+          </button>
+        </li>
       ))}
-    </div>
+    </ul>
   );
-}
-
-const styles = {
-  container: {
-    width: "40%",
-    margin: "0 auto",
-  },
 };
 
 export default Todos;
